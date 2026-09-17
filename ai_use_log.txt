@@ -1,0 +1,24 @@
+AHADI DATA SCIENTIST ASSESSMENT - AI USE LOG (Part 0 Disclosure)
+
+1. AI Tools Utilized:
+   - Claude Code (Anthropic CLI Agent)
+   - Gemini (Google)
+
+2. Purpose and Scope of AI Assistance:
+   - Boilerplate & Code Generation: Used Claude Code to rapidly scaffold the ETL pipeline architecture (`src/aggregation.py`) and Streamlit dashboard layout, allowing me to focus on spatial logic and public health context.
+   - Test Generation: Used AI to generate the `pytest` unit tests for the demographic indicator formulas and schema integrity.
+   - URL Pattern Construction: Used AI to analyze WorldPop's server directory index to construct exact download URLs (handling R2025A release tags and zero-padded age strings).
+   - Plotly Map Troubleshooting: Diagnosed and migrated Mapbox choropleth syntax to Plotly v6 MapLibre standards (px.choropleth_map) to fix an AttributeError.
+   - Spatial Dissolving: Optimized GeoPandas dissolve operations to prevent polygon indexing gaps in Streamlit.
+
+3. Example Prompts Submitted:
+   - "Use Streamlit to build a dashboard layout with a sidebar for Year and County filters, and 5 KPI metric cards at the top for total population, dependency ratio, children under 5, elderly, and sex ratio."
+   - "Write a pytest suite to verify my dependency ratio formula handles division by zero gracefully and checks that no population aggregates are negative."
+   - "Plotly Express choropleth_mapbox is throwing AttributeError in Plotly 6.0, what is the current API standard?"
+   - "How do I programmatically construct download URLs for WorldPop 2025 constrained 1km age-sex rasters for Kenya?"
+
+4. Code Review and Validation Strategy:
+   - Architectural Verification: I manually audited the AI-generated Streamlit code to ensure strict ETL/UI decoupling (verifying no raster processing occurred within the live UI loop).
+   - Spatial Logic Checks: I reviewed the GeoPandas logic to ensure dynamic CRS checking and reprojection to EPSG:4326 before executing rasterstats.
+   - Test-Driven Validation: I ran the AI-generated `pytest` suite against the processed CSV (`tests/test_aggregation.py`). All 4 tests passed, confirming data boundaries and math.
+   - Domain Context: All public health interpretations, policy recommendations, and demographic structurings reflect my independent synthesis based on Kenya health contexts.
