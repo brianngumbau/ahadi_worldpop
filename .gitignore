@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+data/*.tif
+data/*.tiff
+data/*.json
+data/*.zip
+.DS_Store
