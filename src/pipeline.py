@@ -1,27 +1,24 @@
 """
-ETL Pipeline: Raster processing to tabular data.
-Reads GeoTIFFs and GeoJSON boundaries, computes zonal statistics, and exports a CSV.
+Master ETL Pipeline Controller.
+Executes data extraction, validation, and aggregation sequentially.
 """
-import os
-import glob
-import pandas as pd
-import geopandas as gpd
-from rasterstats import zonal_stats
+import logging
+from data_access import fetch_gadm_boundaries, fetch_worldpop_data
+from aggregation import aggregate_population_data
 
-def process_population_data():
-    print("Step 1: Loading Administrative Boundaries...")
-    # Tomorrow: Load the GeoJSON here
-    # gdf_ken = gpd.read_file("../data/gadm41_KEN_2.json")
+logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
+
+def run_pipeline():
+    logging.info("--- STARTING AHADI DATA PIPELINE ---")
     
-    print("Step 2: Locating GeoTIFFs...")
-    # Tomorrow: Use glob to find all the downloaded TIFs
-    # tif_files = glob.glob("../data/**/*.tif", recursive=True)
+    logging.info("Step 1: Downloading resources...")
+    fetch_gadm_boundaries()
+    fetch_worldpop_data()
     
-    print("Step 3: Running Zonal Statistics...")
-    # Tomorrow: Loop through TIFs, extract age/sex from filename, run zonal_stats, and append to a list
+    logging.info("Step 2: Running spatial aggregation and demographics calculations...")
+    aggregate_population_data()
     
-    print("Step 4: Exporting clean tabular data...")
-    # Tomorrow: pd.DataFrame(results).to_csv("../data/processed_population.csv", index=False)
+    logging.info("--- PIPELINE COMPLETE ---")
 
 if __name__ == "__main__":
-    process_population_data()
+    run_pipeline()
