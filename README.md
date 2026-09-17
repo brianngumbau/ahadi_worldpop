@@ -42,3 +42,11 @@ pytest tests/
 
 # Launch the interactive dashboard
 streamlit run dashboard/app.py
+
+Public Health Significance
+
+Child Dependency (<5 years): Identifies counties requiring prioritization for Expanded Programme on Immunization (EPI), routine nutrition supplements, and maternal health commodities.
+
+Elderly Dependency (65+ years): Informs non-communicable disease (NCD) surveillance, palliative care infrastructure, and specialized geriatric care.
+
+Dependency Burden: Highlights fiscal pressure on county health budgets, guiding equitable national subsidy distribution.
