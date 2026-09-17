@@ -1,0 +1,22 @@
+============================================================
+AHADI POPULATION DATA PIPELINE - VALIDATION REPORT
+============================================================
+
+1. FILE VALIDATION:
+ - Total raster files discovered in raw storage: 168
+ - Missing cohort combinations: 12
+ - Handling strategy: Missing cohorts are handled gracefully by zero-fill imputation
+   to ensure downstream aggregations do not throw missing key errors.
+
+2. SPATIAL INTEGRITY CHECK:
+ - GADM Boundary CRS: EPSG:4326
+ - Number of distinct administrative units identified: 47
+ - Sample raster CRS: EPSG:4326
+ - Raster dimensions: 959 x 1173, bands: 1
+ - Coordinate alignment: Vector CRS matches raster CRS (EPSG:4326).
+
+3. DATA QUALITY AUDIT ON PROCESSED OUTPUT:
+ - Negative population values detected: 0
+ - Zero population records: 0
+ - Null entries per column: {'county': 0, 'year': 0, 'total_population': 0, 'children_under_5': 0, 'working_age': 0, 'elderly_65plus': 0, 'sex_ratio': 0, 'dependency_ratio': 0, 'child_dependency_ratio': 0, 'elderly_dependency_ratio': 0, 'pct_children': 0, 'pct_elderly': 0}
+ - Quality verdict: All county aggregates fall within positive plausible ranges.
